@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Mako&display=swap');
+@import "tailwindcss";
+
+@theme{
+  --font-mako: 'Mako', sans-serif;
+
+  --color-cream:#F1FAF6;
+}
+
+@layer base {
+  body{
+    @apply bg-cream text-white font-mako;
+  }
+}
