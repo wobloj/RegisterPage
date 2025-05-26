@@ -6,7 +6,6 @@ import {Input} from "./Input";
 import { Button } from "./Button";
 import { Message } from "./Message";
 
-
 export const Register = () => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -32,7 +31,7 @@ export const Register = () => {
       return;
     }
     try {
-      const res = await axios.post("http://localhost:5000/auth/register",{
+      await axios.post("http://localhost:5000/auth/register",{
         email,
         username,
         password
@@ -42,7 +41,6 @@ export const Register = () => {
       setMessage("Registration successful");
       setMessageType("success");
       messageVisibility();
-      console.log("Register successful:", res.data);
     }catch (error) {
       if(isAxiosError(error)) {
         setMessage(error.response?.data.message);
@@ -61,7 +59,7 @@ export const Register = () => {
     initial={{opacity: 0, scale:0}} 
     animate={{opacity: 1, scale:1}}
     transition={{duration:0.2, scale:{type:"spring", visualDuration:0.4, bounce:0.2}}}
-    className="px-40 py-[78px] bg-[url(../src/assets/blob-haikei.svg)] bg-no-repeat bg-center">
+    className="w-[600px] h-[600px] p-10 bg-[url(../src/assets/blob-haikei.svg)] bg-no-repeat bg-center">
       <h1 className="text-4xl text-center font-bold my-8">Register</h1>
         <form onSubmit={onRegister} className="flex flex-col justify-center items-center gap-2">
             <Input type="email" label="Email" name="email" placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)}/>

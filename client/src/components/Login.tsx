@@ -1,6 +1,7 @@
 import { useState } from "react"
 import axios, {isAxiosError} from "axios"
 import { useNavigate } from "react-router"
+import {useUser} from "../context/UserContext"
 
 import { Input } from "./Input"
 import { Button } from "./Button"
@@ -14,6 +15,8 @@ export const Login = () => {
   const [message, setMessage] = useState<string>("");
   const [messageType, setMessageType] = useState<"success"|"error"|"info">("error");
   const [isMessageVisible, setIsMessageVisible] = useState<boolean>(false);
+
+  const { setUserContext } = useUser();
 
   const navigate = useNavigate();
 
@@ -33,7 +36,7 @@ export const Login = () => {
       },{
         withCredentials: true,
       });
-      console.log(res.data);
+      setUserContext(res.data._id, res.data.username);
       messageVisibility();
       navigate("/home");
     } catch (error) {
@@ -53,7 +56,7 @@ export const Login = () => {
         initial={{opacity: 0, scale:0}} 
         animate={{opacity: 1, scale:1}} 
         transition={{duration:0.2, scale:{type:"spring", visualDuration:0.4, bounce:0.2}}} 
-        className="p-40 bg-[url(../src/assets/blob-haikei.svg)] bg-no-repeat bg-center flex flex-col items-center justify-center gap-2">
+        className="w-[600px] h-[600px] p-10 bg-[url(../src/assets/blob-haikei.svg)] bg-no-repeat bg-center flex flex-col items-center justify-center gap-2">
           <h1 className="text-4xl text-center font-bold my-8">Login</h1>
           <form onSubmit={onLogin} className="flex flex-col items-center">
             <Input type="email" name="email" label="Email" placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)}/>

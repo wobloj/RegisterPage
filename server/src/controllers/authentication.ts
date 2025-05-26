@@ -65,3 +65,19 @@ export const register = async (req: express.Request, res: express.Response) => {
         return res.status(400).json({message: 'Unexpected error'});
     }
 }
+
+export const logout = async (req: express.Request, res: express.Response) =>{
+    try {
+        res.clearCookie('USER-AUTH', {
+            domain: 'localhost',
+            path: '/',
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'strict'
+        });
+        return res.status(200).json({message: "Logged out successfully"})
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json({message: "Error during logout"})
+    }
+}

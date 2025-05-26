@@ -4,7 +4,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     name:string;
     label:string;
     type:string;
-    placeholder:string;
+    placeholder?:string;
     value?: string;
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
@@ -20,11 +20,13 @@ export const Input:FC<InputProps> = ({name, label, type, placeholder, onChange, 
         </label>
 
         <input
+        id={label}
         type={type}
         value={value}
         onChange={onChange}
         placeholder={placeholder} 
-        className={`outline-0 border-3 text-indigo-700 transition-colors duration-200 border-indigo-300 bg-white focus:border-indigo-500 rounded-md p-2 w-64 ${rest}`}/>
+        {...rest}
+        className={`outline-0 border-3 text-indigo-700 transition-colors duration-200 border-indigo-300 disabled:text-gray-500 bg-white focus:border-indigo-500 rounded-md p-2 w-64`}/>
     </div>
   )
 }

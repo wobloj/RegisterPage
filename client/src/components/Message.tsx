@@ -1,8 +1,9 @@
 import {FC} from 'react'
 import {motion} from 'framer-motion'
+import {MessageType} from '../types/Message'
 
 interface MessageProps {
-    type: 'error' | 'success' | 'info';
+    type: MessageType;
     children: React.ReactNode;
 }
 
