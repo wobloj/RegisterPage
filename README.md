@@ -53,8 +53,9 @@ To run frontend in terminal type: `npm run dev`
 
 ## Features
 
-- Login and register user
-- Full data validation
-- Fetch users 
-- Animated messages and divs
+- Login and register user,
+- Full data validation,
+- Fetch users,
+- Update and delete logged user,
+- Animated messages and divs.
 
